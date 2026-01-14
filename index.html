@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>pricewars.api — Algorithmic Pricing Infrastructure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="pricewars.api is an API-first pricing competition engine used by ecommerce businesses to react to competitor price changes while protecting profit." />
+
+  <style>
+    :root {
+      --primary: #6fcf97;
+      --primary-dark: #3fa574;
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    h1, h2 { margin-bottom: 16px; }
+
+    .hero {
+      padding: 96px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+    }
+
+    .hero p, .section-desc {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+
+    .cta {
+      padding: 14px 22px;
+      background: var(--primary);
+      color: #064e3b;
+      font-weight: 600;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .grid-3, .pricing, .metrics {
+      display: grid;
+      gap: 28px;
+    }
+
+    .grid-3, .pricing { grid-template-columns: repeat(3, 1fr); }
+    .metrics { grid-template-columns: repeat(4, 1fr); }
+
+    .card, .metric {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      background: #fff;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    footer {
+      background: #fafafa;
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .footer-col a {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-3,
+      .pricing,
+      .metrics,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">pricewars.api</div>
+    <div class="nav-links">
+      <a href="#product">Product</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#metrics">Metrics</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1>Algorithmic pricing infrastructure for competitive ecommerce.</h1>
+      <p>
+        pricewars.api is a real-time price competition engine that reacts to competitor pricing
+        while enforcing profit-aware guardrails.
+      </p>
+      <a class="cta" href="#contact">Request API Access</a>
+    </div>
+    <div class="card">
+      API-only. Autonomous. Designed for scale and long-term deployment.
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <h2>Pricing</h2>
+    <p class="section-desc">Commission-based pricing aligned with outcomes.</p>
+    <div class="pricing">
+      <div class="card">
+        <div class="price">2.5%</div>
+        Retailers — profit influenced
+      </div>
+      <div class="card">
+        <div class="price">1.5%</div>
+        Business — profit influenced
+      </div>
+      <div class="card">
+        <div class="price">Custom</div>
+        Enterprise Prime
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="metrics">
+  <div class="container">
+    <h2>Scale & Economics</h2>
+    <div class="metrics">
+      <div class="metric"><strong>320+</strong><br/>Active Clients</div>
+      <div class="metric"><strong>$593k</strong><br/>Monthly Revenue</div>
+      <div class="metric"><strong>$7.1M</strong><br/>Yearly Revenue</div>
+      <div class="metric"><strong>~96%</strong><br/>Net Margin</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2>Contact</h2>
+    <p class="section-desc">Enterprise and platform integrations only.</p>
+    <a class="cta" href="mailto:hello@pricewars.api">Contact Sales</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>pricewars.api</h4>
+        <p>
+          Algorithmic pricing infrastructure for competitive ecommerce.
+          Built as neutral, API-first market software.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#product">Overview</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#metrics">Metrics</a>
+        <a href="#contact">API Access</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">API Usage Policy</a>
+        <a href="#">Compliance & Disclosures</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Security</a>
+        <a href="#">Status</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 pricewars.api. All rights reserved.  
+      pricewars.api provides pricing automation software only and does not set or mandate final retail prices.  
+      Clients retain full control and responsibility for pricing decisions.  
+      Subject to applicable competition, antitrust, and ecommerce regulations.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
