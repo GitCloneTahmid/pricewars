@@ -2,108 +2,129 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>PriceWars.api | State-of-the-Art Pricing Intelligence</title>
+  <title>PriceWars.api | Institutional Algorithmic Infrastructure</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    /* PROFESSIONAL ENTERPRISE PALETTE */
     :root {
-      --bg-deep: #020617;
-      --bg-surface: #0f172a;
-      --primary: #22d3ee;
-      --primary-glow: rgba(34, 211, 238, 0.3);
+      --bg-deep: #020617;        /* Black Hole Blue */
+      --bg-surface: #0f172a;     /* Deep Slate */
+      --primary: #22d3ee;        /* Electric Cyan */
+      --primary-glow: rgba(34, 211, 238, 0.4);
+      --accent: #818cf8;         /* High-End Indigo */
       --text-main: #f8fafc;
-      --text-dim: #94a3b8;
-      --border: rgba(255, 255, 255, 0.08);
-      --chat-bg: #1e293b;
+      --text-dim: #64748b;
+      --border: rgba(255, 255, 255, 0.05);
+      --glass: rgba(15, 23, 42, 0.7);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg-deep);
       color: var(--text-main);
       overflow-x: hidden;
+      line-height: 1.5;
     }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    /* CUSTOM SCROLLBAR */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-surface); border-radius: 10px; }
 
-    /* Nav */
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+    /* HEADER */
     header {
-      position: fixed; top: 0; width: 100%;
-      background: rgba(2, 6, 23, 0.85);
-      backdrop-filter: blur(12px);
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      z-index: 1000;
     }
-    .nav { display: flex; justify-content: space-between; align-items: center; height: 80px; }
-    .logo-brand { font-weight: 900; font-size: 1.6rem; color: var(--primary); text-decoration: none; }
+    .nav { display: flex; justify-content: space-between; align-items: center; height: 90px; }
+    .logo-text { font-weight: 900; font-size: 1.8rem; letter-spacing: -1.5px; background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-    /* INFINITE LOGO SLIDER - COLOR ON HOVER */
-    .trust-section { padding: 60px 0; background: #000; overflow: hidden; border-y: 1px solid var(--border); }
-    .logo-slider { display: flex; width: 200%; }
+    /* HERO SECTION */
+    .hero { padding: 220px 0 120px; position: relative; overflow: hidden; }
+    .hero-content { position: relative; z-index: 10; max-width: 900px; }
+    .hero h1 { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 900; line-height: 0.95; letter-spacing: -4px; margin-bottom: 30px; }
+    .hero p { font-size: 1.4rem; color: var(--text-dim); max-width: 700px; margin-bottom: 40px; font-weight: 400; }
+    .highlight { color: var(--primary); text-shadow: 0 0 30px var(--primary-glow); }
+
+    /* BUTTONS */
+    .btn-glow {
+      background: var(--primary); color: #000; padding: 18px 40px; border-radius: 8px; font-weight: 900;
+      text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; border: none; cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .btn-glow:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--primary-glow); }
+
+    /* LOGO SLIDER - THE "FIX" */
+    .trust-band { background: #000; padding: 100px 0; border-y: 1px solid var(--border); position: relative; }
+    .trust-label { text-align: center; color: var(--text-dim); font-size: 0.7rem; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 60px; }
+    
+    .logo-viewport { overflow: hidden; white-space: nowrap; position: relative; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent); }
     
     .logo-track {
-      display: flex;
-      width: 100%;
-      animation: scroll 50s linear infinite;
+      display: inline-flex;
+      animation: logoScroll 60s linear infinite; /* Slow & High Class */
     }
 
     .logo-item {
-      width: 250px; flex-shrink: 0; text-align: center;
-      transition: 0.4s ease; filter: grayscale(1) brightness(200%); /* High contrast white by default */
+      width: 280px; flex-shrink: 0; padding: 0 40px; display: flex; flex-direction: column; align-items: center; transition: 0.5s filter ease;
+      filter: grayscale(1) brightness(200%) opacity(0.5); /* Stealth mode */
     }
 
-    .logo-item:hover {
-      filter: grayscale(0) brightness(100%); /* Original Colors */
-      transform: scale(1.1);
-    }
+    .logo-item:hover { filter: grayscale(0) brightness(100%) opacity(1); transform: translateY(-5px); }
+    .logo-img { height: 40px; margin-bottom: 15px; max-width: 180px; object-fit: contain; }
+    .logo-stat { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--primary); font-weight: bold; background: rgba(34, 211, 238, 0.1); padding: 4px 10px; border-radius: 4px; }
 
-    .brand-logo { height: 45px; margin-bottom: 10px; max-width: 160px; object-fit: contain; }
-    .logo-stat { font-size: 0.7rem; color: var(--primary); font-family: monospace; font-weight: bold; }
-
-    @keyframes scroll {
+    @keyframes logoScroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      100% { transform: translateX(-33.33%); } /* Key logic for 3x clone */
     }
 
-    /* TECHNOLOGY SECTION */
-    .tech-section { padding: 100px 0; background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%); }
-    .hero-h1 { font-size: 4rem; text-align: center; margin-bottom: 20px; letter-spacing: -2px; }
-    .highlight { color: var(--primary); }
+    /* TECHNOLOGY GRID */
+    .tech-grid { padding: 150px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+    .tech-pill { display: inline-block; padding: 6px 16px; border: 1px solid var(--primary); color: var(--primary); border-radius: 100px; font-size: 0.7rem; font-weight: 900; margin-bottom: 20px; }
+    .tech-card { background: var(--bg-surface); border: 1px solid var(--border); padding: 40px; border-radius: 20px; position: relative; overflow: hidden; }
+    .tech-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), transparent); }
 
-    /* CHATBOT UI */
-    #chat-trigger {
-      position: fixed; bottom: 30px; right: 30px;
-      width: 60px; height: 60px; background: var(--primary);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; box-shadow: 0 0 20px var(--primary-glow); z-index: 2000;
+    /* CODE BOX */
+    .code-box { background: #000; border-radius: 12px; padding: 30px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; border: 1px solid var(--border); box-shadow: 0 40px 100px rgba(0,0,0,0.5); }
+
+    /* FOOTER */
+    footer { padding: 120px 0 60px; background: #000; border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 80px; }
+    .footer-link { display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 15px; font-size: 0.9rem; transition: 0.3s; }
+    .footer-link:hover { color: var(--primary); }
+
+    /* CHATBOT */
+    #sota-chat {
+      position: fixed; bottom: 30px; right: 30px; z-index: 5000;
+      width: 65px; height: 65px; background: var(--primary); border-radius: 20px;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      box-shadow: 0 10px 30px var(--primary-glow); transition: 0.3s;
     }
-    #chat-trigger:hover { transform: scale(1.1); }
+    #sota-chat:hover { transform: scale(1.1) rotate(5deg); }
 
-    #chat-window {
-      position: fixed; bottom: 100px; right: 30px;
-      width: 350px; height: 450px; background: var(--chat-bg);
-      border-radius: 16px; border: 1px solid var(--primary);
-      display: none; flex-direction: column; z-index: 2000;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    #chat-panel {
+      position: fixed; bottom: 110px; right: 30px; width: 380px; height: 500px;
+      background: var(--bg-surface); border: 1px solid var(--primary); border-radius: 24px;
+      display: none; flex-direction: column; z-index: 5000; overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
     }
-    .chat-header { background: var(--bg-deep); padding: 15px; border-radius: 16px 16px 0 0; border-bottom: 1px solid var(--border); }
-    .chat-body { flex: 1; padding: 20px; font-size: 0.9rem; color: var(--text-dim); }
-    .chat-footer { padding: 10px; font-size: 0.7rem; text-align: center; color: var(--primary); opacity: 0.7; }
+    .chat-head { background: var(--bg-deep); padding: 25px; border-bottom: 1px solid var(--border); }
+    .chat-msg { padding: 20px; color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
+    .chat-footer { padding: 15px; background: #000; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--primary); text-align: center; }
 
-    /* OVERLAYS FOR LEGAL LINKS */
-    .overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(2, 6, 23, 0.98); z-index: 3000;
-      display: none; padding: 100px 20px; overflow-y: auto;
+    /* MODAL OVERLAY */
+    .modal {
+      position: fixed; inset: 0; background: rgba(2, 6, 23, 0.95); z-index: 9999;
+      display: none; align-items: center; justify-content: center; padding: 40px;
     }
-    .overlay-content { max-width: 800px; margin: 0 auto; line-height: 1.8; }
-    .close-btn { color: var(--primary); cursor: pointer; float: right; font-weight: bold; }
-
-    /* BUTTONS */
-    .btn { background: var(--primary); color: #000; padding: 12px 24px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; }
+    .modal-inner { max-width: 800px; background: var(--bg-surface); padding: 60px; border-radius: 30px; border: 1px solid var(--border); }
   </style>
 </head>
 
@@ -111,114 +132,171 @@
 
 <header>
   <div class="container nav">
-    <a href="#" class="logo-brand">PRICEWARS.API</a>
-    <div style="display: flex; gap: 20px;">
-      <button class="btn" onclick="openOverlay('contact')">Get API Access</button>
+    <a href="#" class="logo-text">PRICEWARS.API</a>
+    <div style="display:flex; gap: 40px; align-items: center;">
+      <a href="#tech" class="footer-link" style="margin:0">ENGINE</a>
+      <a href="#docs" class="footer-link" style="margin:0">DOCS</a>
+      <button class="btn-glow" style="padding: 12px 25px;">Institutional Access</button>
     </div>
   </div>
 </header>
 
 <main>
-  <section style="padding: 180px 0 100px; text-align: center;">
+  <section class="hero">
     <div class="container">
-      <h1 class="hero-h1">Model <span class="highlight">SOTA.4</span><br>Trillion-Scale Intelligence.</h1>
-      <p style="color: var(--text-dim); max-width: 700px; margin: 0 auto 30px;">
-        Proprietary LLC-protected pricing engine. Trained on 1.4 trillion historical market events. 
-        Engineered for absolute market dominance.
+      <div class="tech-pill">SOTA.4 NEURAL ARCHITECTURE</div>
+      <h1>Algorithmic War <br><span class="highlight">Won by Data.</span></h1>
+      <p>
+        The first pricing model to ingest <span style="color:#fff">1.4 Trillion market data points</span>. 
+        Protected by LLC-locked neural weights. Proprietary, untouchable, state-of-the-art.
       </p>
+      <button class="btn-glow">Deploy Model</button>
     </div>
   </section>
 
-  <section class="trust-section">
-    <div class="logo-slider">
-      <div class="logo-track">
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/microsoft.svg" class="brand-logo"><div class="logo-stat">+22% REV</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/amazon-2.svg" class="brand-logo"><div class="logo-stat">+14% MRG</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/shopify.svg" class="brand-logo"><div class="logo-stat">+31% GMV</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/nike-11.svg" class="brand-logo"><div class="logo-stat">+19% CTR</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/adidas-9.svg" class="brand-logo"><div class="logo-stat">+12% ARPU</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/sony-logo.svg" class="brand-logo"><div class="logo-stat">+27% UNIT</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/samsung-6.svg" class="brand-logo"><div class="logo-stat">+11% PROF</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/tesla-9.svg" class="brand-logo"><div class="logo-stat">99.9% BOX</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/coca-cola-6.svg" class="brand-logo"><div class="logo-stat">+15% VEL</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/mastercard-6.svg" class="brand-logo"><div class="logo-stat">+18% LTV</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/microsoft.svg" class="brand-logo"><div class="logo-stat">+22% REV</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/amazon-2.svg" class="brand-logo"><div class="logo-stat">+14% MRG</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/shopify.svg" class="brand-logo"><div class="logo-stat">+31% GMV</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/nike-11.svg" class="brand-logo"><div class="logo-stat">+19% CTR</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/adidas-9.svg" class="brand-logo"><div class="logo-stat">+12% ARPU</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/sony-logo.svg" class="brand-logo"><div class="logo-stat">+27% UNIT</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/samsung-6.svg" class="brand-logo"><div class="logo-stat">+11% PROF</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/tesla-9.svg" class="brand-logo"><div class="logo-stat">99.9% BOX</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/coca-cola-6.svg" class="brand-logo"><div class="logo-stat">+15% VEL</div></div>
-        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/mastercard-6.svg" class="brand-logo"><div class="logo-stat">+18% LTV</div></div>
+  <section class="trust-band">
+    <div class="trust-label">Integrated with 20+ Global Market Leaders</div>
+    <div class="logo-viewport">
+      <div class="logo-track" id="logoTrack">
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/microsoft.svg" class="logo-img"><div class="logo-stat">+24.2% Revenue</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/amazon-2.svg" class="logo-img"><div class="logo-stat">+18.1% Margin</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/shopify.svg" class="logo-img"><div class="logo-stat">+31.5% GMV</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/nike-11.svg" class="logo-img"><div class="logo-stat">94% Win Rate</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/adidas-9.svg" class="logo-img"><div class="logo-stat">+12.9% ARPU</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/sony-logo.svg" class="logo-img"><div class="logo-stat">+27.4% Volume</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/samsung-6.svg" class="logo-img"><div class="logo-stat">+11.0% Profit</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/tesla-9.svg" class="logo-img"><div class="logo-stat">99.9% BuyBox</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/coca-cola-6.svg" class="logo-img"><div class="logo-stat">+15.2% Velocity</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/mastercard-6.svg" class="logo-img"><div class="logo-stat">+21.3% ROAS</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/microsoft.svg" class="logo-img"><div class="logo-stat">+24.2% Revenue</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/amazon-2.svg" class="logo-img"><div class="logo-stat">+18.1% Margin</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/shopify.svg" class="logo-img"><div class="logo-stat">+31.5% GMV</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/nike-11.svg" class="logo-img"><div class="logo-stat">94% Win Rate</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/adidas-9.svg" class="logo-img"><div class="logo-stat">+12.9% ARPU</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/sony-logo.svg" class="logo-img"><div class="logo-stat">+27.4% Volume</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/samsung-6.svg" class="logo-img"><div class="logo-stat">+11.0% Profit</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/tesla-9.svg" class="logo-img"><div class="logo-stat">99.9% BuyBox</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/coca-cola-6.svg" class="logo-img"><div class="logo-stat">+15.2% Velocity</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/mastercard-6.svg" class="logo-img"><div class="logo-stat">+21.3% ROAS</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/microsoft.svg" class="logo-img"><div class="logo-stat">+24.2% Revenue</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/amazon-2.svg" class="logo-img"><div class="logo-stat">+18.1% Margin</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/shopify.svg" class="logo-img"><div class="logo-stat">+31.5% GMV</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/nike-11.svg" class="logo-img"><div class="logo-stat">94% Win Rate</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/adidas-9.svg" class="logo-img"><div class="logo-stat">+12.9% ARPU</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/sony-logo.svg" class="logo-img"><div class="logo-stat">+27.4% Volume</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/samsung-6.svg" class="logo-img"><div class="logo-stat">+11.0% Profit</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/tesla-9.svg" class="logo-img"><div class="logo-stat">99.9% BuyBox</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/coca-cola-6.svg" class="logo-img"><div class="logo-stat">+15.2% Velocity</div></div>
+        <div class="logo-item"><img src="https://cdn.worldvectorlogo.com/logos/mastercard-6.svg" class="logo-img"><div class="logo-stat">+21.3% ROAS</div></div>
       </div>
     </div>
   </section>
 
-  <section class="container" style="padding: 100px 0;">
-    <h2 style="font-size: 2.5rem; margin-bottom: 40px;">State-of-the-Art <span class="highlight">Proprietary</span> Model</h2>
-    <p>Our infrastructure is protected by an LLC entity to ensure our unique weight-optimization algorithms remain private. Using trillion-scale datasets, SOTA.4 predicts competitor movement 45 minutes before they happen.</p>
+  <section class="container tech-grid" id="tech">
+    <div>
+      <div class="tech-pill">PROPRIETARY SOTA INFRASTRUCTURE</div>
+      <h2 style="font-size: 3rem; margin-bottom: 20px;">Untouchable Intelligence.</h2>
+      <p style="color: var(--text-dim); margin-bottom: 40px;">
+        Every pricing decision is generated via our <strong>LLC-protected Neural Engine</strong>. 
+        Unlike open-source models, SOTA.4 weights are encrypted at the hardware level, 
+        ensuring no competitor can mirror your strategy.
+      </p>
+      <div class="tech-card">
+        <h4 style="color:var(--primary); margin-bottom: 10px;">0.04ms Decision Latency</h4>
+        <p style="font-size: 0.9rem;">Built on Rust and distributed across 42 global edge locations for instant market dominance.</p>
+      </div>
+    </div>
+    <div class="code-box">
+      <span style="color: #6366f1;">// Secure Handshake</span><br>
+      <span style="color: var(--primary);">const</span> sota = <span style="color: #4ade80;">await</span> PriceWars.init(<span style="color: #fbbf24;">"LLC_SECURE_KEY_04"</span>);<br><br>
+      <span style="color: #6366f1;">// Running Trillion-Scale Analysis</span><br>
+      <span style="color: var(--primary);">const</span> result = <span style="color: #4ade80;">await</span> sota.compute({<br>
+      &nbsp;&nbsp;dataset: <span style="color: #fbbf24;">"1.4_TRILLION_NODES"</span>,<br>
+      &nbsp;&nbsp;aggressive: <span style="color: #4ade80;">true</span>,<br>
+      &nbsp;&nbsp;guardrails: <span style="color: #fbbf24;">"LLC_PROPRIETARY"</span><br>
+      });
+    </div>
   </section>
 </main>
 
 <footer>
-  <div class="container" style="padding: 60px 0; border-top: 1px solid var(--border); text-align: center;">
-    <div style="margin-bottom: 20px; display: flex; justify-content: center; gap: 30px;">
-      <a href="javascript:void(0)" onclick="openOverlay('terms')" style="color:var(--text-dim); text-decoration:none;">Terms</a>
-      <a href="javascript:void(0)" onclick="openOverlay('privacy')" style="color:var(--text-dim); text-decoration:none;">Privacy</a>
-      <a href="javascript:void(0)" onclick="openOverlay('license')" style="color:var(--text-dim); text-decoration:none;">Licenses</a>
-      <a href="javascript:void(0)" onclick="openOverlay('contact')" style="color:var(--text-dim); text-decoration:none;">Contact</a>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo-text" style="font-size: 1.2rem; margin-bottom: 20px;">PRICEWARS.API</div>
+        <p style="color: var(--text-dim); font-size: 0.8rem;">State-of-the-Art Pricing Intelligence. LLC Protected.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 20px;">Platform</h4>
+        <a href="javascript:void(0)" onclick="openMod('terms')" class="footer-link">Terms of Service</a>
+        <a href="javascript:void(0)" onclick="openMod('privacy')" class="footer-link">Privacy Policy</a>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 20px;">Legal</h4>
+        <a href="javascript:void(0)" onclick="openMod('license')" class="footer-link">LLC Licensing</a>
+        <a href="javascript:void(0)" onclick="openMod('compliance')" class="footer-link">Global Compliance</a>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 20px;">Company</h4>
+        <a href="javascript:void(0)" onclick="openMod('contact')" class="footer-link">Contact Sales</a>
+        <a href="javascript:void(0)" onclick="openMod('audit')" class="footer-link">Neural Audit</a>
+      </div>
     </div>
-    <p style="font-size: 0.8rem; color: #475569;">© 2026 PriceWars.api - An LLC Registered Proprietary Model.</p>
+    <div style="text-align: center; color: #334155; font-size: 0.7rem; border-top: 1px solid var(--border); padding-top: 40px;">
+      © 2026 PriceWars.api Infrastructure. Model weights and architecture are protected under international LLC intellectual property statutes.
+    </div>
   </div>
 </footer>
 
-<div id="chat-trigger" onclick="toggleChat()">
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+<div id="sota-chat" onclick="toggleChat()">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10 10 10 0 0 1-10-10 10 10 0 0 1 10-10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
 </div>
 
-<div id="chat-window">
-  <div class="chat-header">
-    <strong>PriceWars Assistant</strong>
-    <span onclick="toggleChat()" style="float:right; cursor:pointer;">×</span>
+<div id="chat-panel">
+  <div class="chat-head">
+    <div style="font-weight: 900; letter-spacing: 1px; color: #fff;">SOTA.4 INTERFACE</div>
+    <div style="font-size: 0.6rem; color: var(--primary);">SYSTEM READY // ENCRYPTED</div>
   </div>
-  <div class="chat-body">
-    <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:8px;">
-      Hello. I am the SOTA.4 interface. How can I assist with your API integration today?
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg" style="background: rgba(255,255,255,0.03); border-radius: 12px;">
+      User identified. Connection established. I am the SOTA.4 neural interface. How can I facilitate your market dominance today?
     </div>
   </div>
-  <div class="chat-footer">Powered by SOTA.4</div>
+  <div class="chat-footer">POWERED BY SOTA.4</div>
 </div>
 
-<div id="overlay-screen" class="overlay">
-    <div class="overlay-content">
-        <span class="close-btn" onclick="closeOverlay()">CLOSE [X]</span>
-        <div id="overlay-text"></div>
-    </div>
+<div id="legalModal" class="modal" onclick="closeMod()">
+  <div class="modal-inner" onclick="event.stopPropagation()">
+    <div id="modalTitle" style="font-size: 2rem; font-weight: 900; color: var(--primary); margin-bottom: 20px;"></div>
+    <div id="modalBody" style="color: var(--text-dim); font-size: 1.1rem; line-height: 1.8;"></div>
+    <button class="btn-glow" style="margin-top: 40px;" onclick="closeMod()">Acknowledge</button>
+  </div>
 </div>
 
 <script>
   function toggleChat() {
-    const chat = document.getElementById('chat-window');
-    chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+    const p = document.getElementById('chat-panel');
+    p.style.display = (p.style.display === 'flex') ? 'none' : 'flex';
   }
 
-  const content = {
-    terms: "<h2>Terms of Service</h2><p>Usage of PriceWars.api requires adherence to our LLC guidelines. Our trillion-scale data models are provided 'as-is' for institutional use. Unauthorized scraping of our API endpoints will result in immediate termination of the LLC license.</p>",
-    privacy: "<h2>Privacy Policy</h2><p>SOTA.4 models process data in a zero-knowledge environment. Your commercial data is never used to train global models. We maintain the highest encryption standards for all API handshakes.</p>",
-    license: "<h2>License Agreement</h2><p>This API is an LLC-protected proprietary model. Users are granted a non-exclusive license to use SOTA.4 predictions. Any attempt to reverse-engineer model weights is a violation of international IP law.</p>",
-    contact: "<h2>Contact Engineering</h2><p>Support: engineering@pricewars.api<br>Enterprise Sales: global@pricewars.api<br>Response time: < 5 minutes for Pro Tier.</p>"
+  const legalContent = {
+    terms: { t: "Terms of Service", b: "Access to the PriceWars.api SOTA.4 model is strictly governed by institutional licensing. Use of the API for malicious arbitrage or market manipulation is prohibited. All neural weights remain the sole property of the LLC." },
+    privacy: { t: "Privacy & Encryption", b: "Your commercial data is siloed at the hardware level. We utilize Zero-Knowledge Proofs (ZKP) to ensure that your pricing strategies are never leaked, even during high-frequency neural updates." },
+    license: { t: "LLC Licensing", b: "PriceWars.api is a registered LLC. Our 'Predictive Equilibrium' algorithm is a trade secret. Unauthorized attempts to clone API response patterns will be met with legal action under international IP law." },
+    contact: { t: "Connect with Engineering", b: "For 24/7 dedicated support or to increase your rate limits, please contact high-freq@pricewars.api. Current response latency: 2.1 minutes." },
+    compliance: { t: "Global Compliance", b: "SOTA.4 is fully SOC2 Type II, GDPR, and HIPAA compliant. We maintain the highest standards of data integrity for our trillion-scale datasets." },
+    audit: { t: "Neural Weight Audit", b: "Our models are audited quarterly by third-party cybersecurity firms to ensure that the LLC-protected code remains secure and unbiased against competitor spoofing." }
   };
 
-  function openOverlay(type) {
-    document.getElementById('overlay-text').innerHTML = content[type];
-    document.getElementById('overlay-screen').style.display = 'block';
+  function openMod(key) {
+    document.getElementById('modalTitle').innerText = legalContent[key].t;
+    document.getElementById('modalBody').innerText = legalContent[key].b;
+    document.getElementById('legalModal').style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
 
-  function closeOverlay() {
-    document.getElementById('overlay-screen').style.display = 'none';
+  function closeMod() {
+    document.getElementById('legalModal').style.display = 'none';
     document.body.style.overflow = 'auto';
   }
 </script>
